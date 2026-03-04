@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francisco Afonseca — Portefólio</title>
+    <meta
+      name="description"
+      content="Portefólio de Francisco Afonseca — Estudante de Licenciatura em Engenharia Informática."
+    />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-2: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.65);
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --accent: #63b3ff;
+        --accent-2: #7c6bff;
+        --ring: rgba(99, 179, 255, 0.35);
+        --radius: 18px;
+      }
+
+      [data-theme="light"] {
+        --bg: #f6f8ff;
+        --panel: rgba(10, 18, 32, 0.06);
+        --panel-2: rgba(10, 18, 32, 0.09);
+        --text: rgba(10, 18, 32, 0.92);
+        --muted: rgba(10, 18, 32, 0.62);
+        --border: rgba(10, 18, 32, 0.12);
+        --shadow: 0 20px 60px rgba(10, 18, 32, 0.12);
+        --accent: #2563eb;
+        --accent-2: #7c3aed;
+        --ring: rgba(37, 99, 235, 0.25);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background: var(--bg);
+        overflow-x: hidden;
+      }
+
+      /* Subtle animated background */
+      .bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background:
+          radial-gradient(
+            900px 600px at 20% 10%,
+            color-mix(in oklab, var(--accent) 28%, transparent) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 80% 30%,
+            color-mix(in oklab, var(--accent-2) 22%, transparent) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            1200px 800px at 50% 120%,
+            rgba(255, 255, 255, 0.06) 0%,
+            transparent 60%
+          );
+        filter: saturate(1.1);
+      }
+      .noise {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.07;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(12px);
+        background: color-mix(in oklab, var(--bg) 75%, transparent);
+        border-bottom: 1px solid var(--border);
+        z-index: 20;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        gap: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 240px;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 0 6px
+          color-mix(in oklab, var(--accent) 20%, transparent);
+      }
+      .brand strong {
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .brand span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .pill {
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--panel) 75%, transparent);
+        border-radius: 999px;
+        font-size: 13px;
+        color: var(--muted);
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease,
+          border-color 0.15s ease;
+        outline: none;
+      }
+      .pill:hover {
+        transform: translateY(-1px);
+        border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+        color: var(--text);
+      }
+      .pill:focus-visible {
+        box-shadow: 0 0 0 5px var(--ring);
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-end;
+        min-width: 240px;
+      }
+
+      .btn {
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--panel-2) 80%, transparent);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          border-color 0.15s ease,
+          background 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 5px var(--ring);
+      }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      main {
+        padding: 36px 0 70px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: stretch;
+        margin-top: 18px;
+      }
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .brand,
+        .actions {
+          min-width: unset;
+        }
+        .links {
+          justify-content: flex-start;
+        }
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--panel) 75%, transparent);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .card-inner {
+        padding: 22px;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(30px, 4vw, 44px);
+        letter-spacing: -0.6px;
+        line-height: 1.1;
+      }
+      .sub {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 60ch;
+      }
+      .tagrow {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .tag {
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--panel-2) 78%, transparent);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .hero-right {
+        display: grid;
+        gap: 14px;
+      }
+      .mini {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 18px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--panel) 70%, transparent);
+      }
+      .mini h3 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+      .mini p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .mini .line {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+      }
+
+      section {
+        margin-top: 18px;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 18px 4px 10px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+      .section-head small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .empty {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+      }
+      .empty .hint {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px dashed var(--border);
+        color: var(--muted);
+        background: color-mix(in oklab, var(--panel) 60%, transparent);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 22px 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg"></div>
+    <div class="noise"></div>
+
+    <header>
+      <div class="container">
+        <div class="nav">
+          <div class="brand">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <strong>Francisco Afonseca</strong><br />
+              <span>Estudante de Licenciatura em Engenharia Informática</span>
+            </div>
+          </div>
+
+          <nav class="links" aria-label="Navegação">
+            <a class="pill" href="#sobre">Sobre</a>
+            <a class="pill" href="#projetos">Projetos</a>
+            <a class="pill" href="#posters">Posters</a>
+            <a class="pill" href="#contacto">Contacto</a>
+          </nav>
+
+          <div class="actions">
+            <button
+              class="btn"
+              id="themeBtn"
+              type="button"
+              aria-label="Alternar tema"
+            >
+              🌙/☀️
+            </button>
+            <a class="btn primary" href="#projetos">Ver trabalhos</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="card">
+          <div class="card-inner">
+            <h1>Portefólio</h1>
+            <p class="sub">
+              Página base para testares layout e estética. Depois, só tens de
+              preencher os teus projetos e a galeria de posters de Padel.
+            </p>
+
+            <div class="tagrow" aria-label="Tags">
+              <span class="tag">Software</span>
+              <span class="tag">Web</span>
+              <span class="tag">Mobile</span>
+              <span class="tag">Padel Posters</span>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 18px;
+              "
+            >
+              <a class="btn primary" href="#projetos">Explorar projetos</a>
+              <a class="btn" href="#posters">Ver posters</a>
+              <a
+                class="btn"
+                href="#"
+                onclick="
+                  alert('Depois trocas isto pelo teu GitHub/LinkedIn :)');
+                  return false;
+                "
+                >Links</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="mini">
+            <h3>Estado</h3>
+            <p>Base pronta: navegação, secções, tema e estilo premium.</p>
+            <div class="line"><span>Versão</span><span>v0.1</span></div>
+          </div>
+          <div class="mini">
+            <h3>Como usar</h3>
+            <p>
+              Preenche “Projetos” e “Posters” com cards (ou liga a um JSON).
+            </p>
+            <div class="line">
+              <span>Objetivo</span><span>claro + estético</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOBRE -->
+      <section id="sobre">
+        <div class="section-head">
+          <h2>Sobre</h2>
+          <small>Texto curto e escaneável</small>
+        </div>
+
+        <div class="card">
+          <div class="card-inner empty">
+            <div class="ghost">⬅️ Aqui vais colocar a tua bio (3–5 linhas)</div>
+            <div class="hint">
+              Sugestão: 1 frase sobre quem és, 1 frase sobre o que gostas de
+              construir, e 2–3 bullets (stack / interesses / disponibilidade).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJETOS -->
+      <section id="projetos">
+        <div class="section-head">
+          <h2>Projetos</h2>
+          <small>Cards com descrição + links</small>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">📦 Projeto #1</div>
+              <div class="hint">Título • 1 frase • stack • GitHub/Demo</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">🧠 Projeto #2</div>
+              <div class="hint">Coloca aqui outro projeto em destaque</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">🛡️ Projeto #3</div>
+              <div class="hint">
+                Depois duplicas para teres uma grelha completa
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POSTERS -->
+      <section id="posters">
+        <div class="section-head">
+          <h2>Posters (Padel)</h2>
+          <small>Galeria simples (depois fazemos lightbox)</small>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">🖼️ Poster #1</div>
+              <div class="hint">Imagem • título • ano • ferramentas</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">🖼️ Poster #2</div>
+              <div class="hint">Podes usar formato “masonry” mais tarde</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner empty">
+              <div class="ghost">🖼️ Poster #3</div>
+              <div class="hint">
+                Clica/abre em modal (vamos adicionar depois)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <div class="section-head">
+          <h2>Contacto</h2>
+          <small>Simples, direto, profissional</small>
+        </div>
+
+        <div class="card">
+          <div class="card-inner empty">
+            <div class="ghost">📩 Email • GitHub • LinkedIn</div>
+            <div class="hint">
+              Exemplo: “Queres colaborar ou saber mais? Envia mensagem.” +
+              links.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        class="container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          flex-wrap: wrap;
+        "
+      >
+        <span>© <span id="year"></span> Francisco Afonseca</span>
+        <span>Feito com HTML/CSS — base pronta para evoluir</span>
+      </div>
+    </footer>
+
+    <script>
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Theme toggle (persist)
+      const root = document.documentElement;
+      const btn = document.getElementById("themeBtn");
+      const saved = localStorage.getItem("theme");
+      if (saved) document.body.setAttribute("data-theme", saved);
+
+      function currentTheme() {
+        return document.body.getAttribute("data-theme") || "dark";
+      }
+      function setTheme(t) {
+        if (t === "dark") document.body.removeAttribute("data-theme");
+        else document.body.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", t);
+      }
+      btn.addEventListener("click", () => {
+        setTheme(currentTheme() === "dark" ? "light" : "dark");
+      });
+    </script>
+  </body>
+</html>
