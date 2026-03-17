@@ -8,8 +8,9 @@
       name="description"
       content="Portefólio de Francisco Afonseca — Estudante de Licenciatura em Engenharia Informática."
     />
-    <link rel="icon" href="assets/logotipo.png" type="image/png" />
-    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="assets/logos/logotipo_site.png" type="image/png" />
   </head>
 
   <body>
@@ -19,7 +20,6 @@
     <header>
       <div class="nav">
         <a class="brand" href="#topo" aria-label="Ir para o topo">
-          <div class="dot" aria-hidden="true"></div>
           <div>
             <strong>Francisco Afonseca</strong><br />
             <span>Estudante de Engenharia Informática</span>
@@ -28,6 +28,7 @@
 
         <nav class="links" aria-label="Navegação principal">
           <a class="pill" href="#sobre">Sobre</a>
+          <a class="pill" href="#formacao">Formação</a>
           <a class="pill" href="#skills">Competências</a>
           <a class="pill" href="#conquistas">Conquistas</a>
           <a class="pill" href="#projetos">Projetos</a>
@@ -36,14 +37,20 @@
         </nav>
 
         <div class="actions">
-          <button
+          <a
+            href="docs/Francisco_Afonseca_CV.pdf"
+            class="cv-button"
+            target="_blank"
+            >CV</a
+          >
+          <!-- <button
             class="btn"
             id="langBtn"
             type="button"
             aria-label="Mudar idioma"
           >
             EN
-          </button>
+          </button> -->
 
           <button
             class="btn"
@@ -56,67 +63,57 @@
         </div>
       </div>
     </header>
-
     <main class="container" id="topo">
-      <section class="hero">
-        <div class="card hero-main">
-          <div class="card-inner">
-            <p class="eyebrow">Portefólio</p>
+      <section class="hero" id="hero">
+        <div class="hero-parallax-soft"></div>
 
-            <h1>Francisco Afonseca</h1>
+        <div class="hero-main" id="heroContent">
+          <div class="card">
+            <div class="card-inner">
+              <p class="eyebrow">Portefólio</p>
 
-            <p class="sub">
-              Estudante de Licenciatura em Engenharia Informática na
-              Universidade da Madeira, com interesse em desenvolvimento de
-              software, sistemas informáticos e inteligência artificial.
-            </p>
+              <h1>Francisco Afonseca</h1>
 
-            <div class="tagrow" aria-label="Áreas principais">
-              <span class="tag">Desenvolvimento de Software</span>
-              <span class="tag">Desenvolvimento Web</span>
-              <span class="tag">Inteligência Artificial</span>
-              <span class="tag">Sistemas Informáticos</span>
-            </div>
+              <p class="sub">
+                Estudante de Licenciatura em Engenharia Informática na
+                Universidade da Madeira, com interesse em desenvolvimento de
+                software, sistemas informáticos e inteligência artificial.
+              </p>
 
-            <div class="hero-cta">
-              <a class="btn solid" href="#projetos">Ver projetos</a>
-              <a
-                class="btn"
-                href="https://github.com/franciscoafonseca"
-                target="_blank"
-                rel="noreferrer"
-                >GitHub</a
-              >
-              <a class="btn" href="#contacto">Contacto</a>
+              <div class="tagrow" aria-label="Áreas principais">
+                <span class="tag">Desenvolvimento de Software</span>
+                <span class="tag">Desenvolvimento Web</span>
+                <span class="tag">Inteligência Artificial</span>
+                <span class="tag">Sistemas Informáticos</span>
+              </div>
+
+              <div class="hero-cta">
+                <a class="btn solid" href="#projetos">Ver projetos</a>
+                <a
+                  class="btn"
+                  href="https://github.com/franciscoafonseca"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+                <a class="btn" href="#contacto">Contacto</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="hero-right">
-          <div class="mini">
-            <h3>Formação</h3>
-            <p>Licenciatura em Engenharia Informática</p>
-            <div class="line">
-              <span>Universidade</span>
-              <span>Universidade da Madeira</span>
-            </div>
-          </div>
-
-          <div class="mini">
-            <h3>Foco</h3>
-            <p>
-              Desenvolvimento de software, sistemas e resolução de problemas
-              através de programação.
-            </p>
-            <div class="line">
-              <span>Estado</span>
-              <span>Estudante</span>
-            </div>
+        <div class="hero-side reveal-on-scroll reveal-delay-1">
+          <div class="about-side-photo">
+            <img
+              src="assets/images/foto_perfil.png"
+              alt="Foto de Francisco Afonseca"
+            />
           </div>
         </div>
       </section>
 
-      <section id="sobre">
+      <section id="sobre" class="reveal-on-scroll">
         <div class="section-head">
           <h2>Sobre</h2>
           <small>Resumo curto e objetivo</small>
@@ -162,7 +159,8 @@
           </div>
         </div>
       </section>
-      <section id="formacao">
+
+      <section id="formacao" class="reveal-on-scroll">
         <div class="section-head">
           <h2>Formação</h2>
           <small>Percurso académico e instituições</small>
@@ -170,22 +168,11 @@
 
         <div class="education-wrapper card">
           <div class="card-inner">
-            <div class="education-topbar">
-              <p class="education-intro">
-                Linha temporal interativa do meu percurso académico.
-              </p>
-            </div>
-
-            <div class="education-rail-wrap" id="educationRailWrap">
-              <div class="education-rail">
-                <div class="education-rail-glow" id="educationRailGlow"></div>
-              </div>
-            </div>
-
             <div class="education-timeline-shell">
               <button
                 class="timeline-nav timeline-nav-left"
                 id="timelineLeft"
+                type="button"
                 aria-label="Anterior"
               >
                 <span>‹</span>
@@ -196,6 +183,7 @@
               <button
                 class="timeline-nav timeline-nav-right"
                 id="timelineRight"
+                type="button"
                 aria-label="Seguinte"
               >
                 <span>›</span>
@@ -222,12 +210,15 @@
                 <p class="education-detail-period" id="educationDetailPeriod">
                   2023 — Presente
                 </p>
+
                 <h3 id="educationDetailTitle">
                   Licenciatura em Engenharia Informática
                 </h3>
+
                 <p class="education-detail-place" id="educationDetailPlace">
                   Universidade da Madeira
                 </p>
+
                 <p
                   class="education-detail-description"
                   id="educationDetailDescription"
@@ -245,14 +236,15 @@
           </div>
         </div>
       </section>
-      <section id="skills">
+
+      <section id="skills" class="reveal-on-scroll">
         <div class="section-head">
           <h2>Competências</h2>
           <small>Tecnologias, ferramentas e áreas</small>
         </div>
 
         <div class="grid three">
-          <div class="card">
+          <div class="card reveal-on-scroll reveal-delay-1">
             <div class="card-inner">
               <h3 class="card-title">Linguagens</h3>
               <div class="chip-group">
@@ -265,7 +257,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card reveal-on-scroll reveal-delay-2">
             <div class="card-inner">
               <h3 class="card-title">Ferramentas</h3>
               <div class="chip-group">
@@ -278,7 +270,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card reveal-on-scroll reveal-delay-3">
             <div class="card-inner">
               <h3 class="card-title">Áreas</h3>
               <div class="chip-group">
@@ -291,15 +283,15 @@
           </div>
         </div>
       </section>
-
-      <section id="conquistas">
+      <!-- 
+      <section id="conquistas" class="reveal-on-scroll">
         <div class="section-head">
           <h2>Conquistas</h2>
           <small>Pontos de destaque académico e técnico</small>
         </div>
 
         <div class="grid two">
-          <div class="card">
+          <div class="card reveal-on-scroll reveal-delay-1">
             <div class="card-inner">
               <h3 class="card-title">Percurso Académico</h3>
               <ul class="clean-list">
@@ -310,7 +302,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card reveal-on-scroll reveal-delay-2">
             <div class="card-inner">
               <h3 class="card-title">Evolução Técnica</h3>
               <ul class="clean-list">
@@ -323,114 +315,88 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section id="projetos">
-        <div class="section-head">
-          <h2>Projetos</h2>
-          <small>Trabalhos académicos e pessoais</small>
+      <section class="projects-showcase reveal-on-scroll" id="projects">
+        <div class="projects-showcase-header">
+          <div>
+            <h2>Projects</h2>
+            <p>Selected projects and experiments</p>
+          </div>
+
+          <div class="projects-showcase-controls">
+            <button
+              class="section-nav-button projects-showcase-arrow"
+              id="projectsPrevBtn"
+              type="button"
+              aria-label="Projeto anterior"
+            >
+              <span>&#8249;</span>
+            </button>
+
+            <button
+              class="section-nav-button projects-showcase-arrow"
+              id="projectsNextBtn"
+              type="button"
+              aria-label="Projeto seguinte"
+            >
+              <span>&#8250;</span>
+            </button>
+          </div>
         </div>
 
-        <div class="grid three">
-          <article class="card project-card">
-            <div class="card-inner">
-              <h3 class="card-title">Projeto 1</h3>
-              <p class="project-text">
-                Breve descrição do projeto, objetivo principal e tecnologias
-                utilizadas.
-              </p>
-              <div class="chip-group">
-                <span class="chip">React</span>
-                <span class="chip">Node.js</span>
-              </div>
-              <div class="project-links">
-                <a href="#">GitHub</a>
-                <a href="#">Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="card-inner">
-              <h3 class="card-title">Projeto 2</h3>
-              <p class="project-text">
-                Breve descrição do projeto, objetivo principal e tecnologias
-                utilizadas.
-              </p>
-              <div class="chip-group">
-                <span class="chip">Java</span>
-                <span class="chip">Spring Boot</span>
-              </div>
-              <div class="project-links">
-                <a href="#">GitHub</a>
-                <a href="#">Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="card-inner">
-              <h3 class="card-title">Projeto 3</h3>
-              <p class="project-text">
-                Breve descrição do projeto, objetivo principal e tecnologias
-                utilizadas.
-              </p>
-              <div class="chip-group">
-                <span class="chip">Python</span>
-                <span class="chip">AI</span>
-              </div>
-              <div class="project-links">
-                <a href="#">GitHub</a>
-                <a href="#">Demo</a>
-              </div>
-            </div>
-          </article>
+        <div class="projects-showcase-viewport">
+          <div class="projects-track" id="projectsTrack"></div>
         </div>
       </section>
 
-      <section id="posters">
-        <div class="section-head">
-          <h2>Posters</h2>
-          <small>Projetos visuais e criativos</small>
+      <section class="poster-showcase reveal-on-scroll" id="posters">
+        <div class="poster-showcase-header">
+          <div>
+            <h2>Posters</h2>
+            <p>Projetos visuais e criativos</p>
+          </div>
+
+          <div class="poster-showcase-controls">
+            <button
+              id="posterPrevBtn"
+              class="poster-showcase-arrow"
+              aria-label="Anterior"
+            >
+              &#10094;
+            </button>
+
+            <button
+              id="posterNextBtn"
+              class="poster-showcase-arrow"
+              aria-label="Seguinte"
+            >
+              &#10095;
+            </button>
+          </div>
         </div>
 
-        <div class="grid three">
-          <article class="card poster-card">
-            <div class="card-inner">
-              <div class="poster-placeholder">Poster 1</div>
-              <h3 class="card-title">Poster de Padel 1</h3>
-              <p class="project-text">
-                Espaço para imagem, título e breve descrição do trabalho
-                gráfico.
-              </p>
-            </div>
-          </article>
-
-          <article class="card poster-card">
-            <div class="card-inner">
-              <div class="poster-placeholder">Poster 2</div>
-              <h3 class="card-title">Poster de Padel 2</h3>
-              <p class="project-text">
-                Espaço para imagem, título e breve descrição do trabalho
-                gráfico.
-              </p>
-            </div>
-          </article>
-
-          <article class="card poster-card">
-            <div class="card-inner">
-              <div class="poster-placeholder">Poster 3</div>
-              <h3 class="card-title">Poster de Padel 3</h3>
-              <p class="project-text">
-                Espaço para imagem, título e breve descrição do trabalho
-                gráfico.
-              </p>
-            </div>
-          </article>
+        <div class="poster-showcase-viewport">
+          <div class="poster-showcase-track" id="posterTrack"></div>
         </div>
       </section>
 
-      <section id="contacto">
+      <div class="poster-lightbox" id="posterLightbox" aria-hidden="true">
+        <div class="poster-lightbox-backdrop" id="posterLightboxBackdrop"></div>
+
+        <div class="poster-lightbox-content">
+          <button
+            id="posterLightboxClose"
+            class="poster-lightbox-close"
+            aria-label="Fechar"
+          >
+            &times;
+          </button>
+          <img id="posterLightboxImage" src="" alt="" />
+        </div>
+      </div>
+
+      <section id="contacto" class="reveal-on-scroll">
         <div class="section-head">
           <h2>Contacto</h2>
           <small>Formas de contacto e ligação</small>
@@ -439,16 +405,16 @@
         <div class="card">
           <div class="card-inner contact-grid">
             <a
-              class="contact-item"
-              href="mailto:teuemail@exemplo.com"
+              class="contact-item reveal-on-scroll reveal-delay-1"
+              href="mailto:franciscofafonseca@gmail.com"
               aria-label="Enviar email"
             >
               <span class="contact-label">Email</span>
-              <strong>teuemail@exemplo.com</strong>
+              <strong>franciscofafonseca@gmail.com</strong>
             </a>
 
             <a
-              class="contact-item"
+              class="contact-item reveal-on-scroll reveal-delay-2"
               href="https://github.com/franciscoafonseca"
               target="_blank"
               rel="noreferrer"
@@ -458,9 +424,15 @@
               <strong>github.com/franciscoafonseca</strong>
             </a>
 
-            <a class="contact-item" href="#" aria-label="Abrir LinkedIn">
+            <a
+              class="contact-item reveal-on-scroll reveal-delay-2"
+              href="https://www.linkedin.com/in/francisco-ferreira-afonseca/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Abrir LinkedIn"
+            >
               <span class="contact-label">LinkedIn</span>
-              <strong>Adicionar perfil LinkedIn</strong>
+              <strong>Francisco Ferreira Afonseca</strong>
             </a>
           </div>
         </div>
@@ -474,6 +446,6 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
