@@ -214,23 +214,3 @@
   background: rgba(77, 163, 255, 0.1);
   border-color: rgba(77, 163, 255, 0.24);
 }
-
-[data-theme="light"] .section-nav-button {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.04),
-    rgba(15, 23, 42, 0.02)
-  );
-  border-color: rgba(15, 23, 42, 0.12);
-  color: #0f172a;
-}
-
-[data-theme="light"] .section-nav-button:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(77, 163, 255, 0.12),
-    rgba(15, 23, 42, 0.03)
-  );
-  border-color: rgba(77, 163, 255, 0.26);
-  color: #0f172a;
-}
