@@ -58,16 +58,17 @@
 
     <main class="container" id="topo">
       <section class="hero" id="hero">
-        <div class="hero-parallax-soft"></div>
-
         <div class="hero-main" id="heroContent">
           <div class="card hero-card">
-            <div class="card-inner">
-              <p class="eyebrow">Portefólio</p>
+            <div class="hero-card-inner">
+              <p class="hero-eyebrow">Portefólio pessoal</p>
 
-              <h1>Francisco Afonseca</h1>
+              <h1 class="hero-title">
+                Francisco
+                <span>Afonseca</span>
+              </h1>
 
-              <p class="sub">
+              <p class="hero-sub">
                 Estudante de Licenciatura em Engenharia Informática na
                 Universidade da Madeira, com interesse em desenvolvimento de
                 software, sistemas informáticos e inteligência artificial.
@@ -75,6 +76,7 @@
 
               <div class="hero-cta">
                 <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+
                 <a
                   class="btn btn-secondary"
                   href="https://github.com/franciscoafonseca"
@@ -83,18 +85,38 @@
                 >
                   GitHub
                 </a>
+
                 <a class="btn btn-secondary" href="#contacto">Contacto</a>
+              </div>
+
+              <div class="hero-meta" aria-label="Resumo do portefólio">
+                <div class="hero-meta-item">
+                  <strong data-project-count>0</strong>
+                  <span>Projetos publicados</span>
+                </div>
+
+                <div class="hero-meta-item">
+                  <strong>UMa</strong>
+                  <span>Licenciatura em Engenharia Informática</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="hero-side reveal-on-scroll reveal-delay-1">
-          <div class="about-side-photo">
-            <img
-              src="assets/images/foto_perfil.png"
-              alt="Foto de Francisco Afonseca"
-            />
+          <div class="hero-photo-card">
+            <div class="hero-status">
+              <span aria-hidden="true"></span>
+              Disponível para projetos
+            </div>
+
+            <div class="about-side-photo">
+              <img
+                src="assets/images/foto_perfil.png"
+                alt="Foto de Francisco Afonseca"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -212,31 +234,35 @@
         </div>
       </section>
 
-      <section class="projects-showcase reveal-on-scroll" id="projetos">
-        <div class="projects-showcase-header">
+      <section id="projects" class="projects-showcase reveal-on-scroll">
+        <div class="section-head projects-showcase-header">
           <div>
             <h2 class="section-title">Projetos</h2>
-            <p>Projetos e experiências individuais</p>
+            <small>Projetos e experiências individuais</small>
           </div>
 
-          <div class="projects-showcase-controls">
-            <button
-              class="section-nav-button projects-showcase-arrow"
-              id="projectsPrevBtn"
-              type="button"
-              aria-label="Projeto anterior"
-            >
-              <span>&#8249;</span>
-            </button>
+          <div class="projects-header-actions">
+            <div class="project-filters" id="projectFilters"></div>
 
-            <button
-              class="section-nav-button projects-showcase-arrow"
-              id="projectsNextBtn"
-              type="button"
-              aria-label="Projeto seguinte"
-            >
-              <span>&#8250;</span>
-            </button>
+            <div class="projects-showcase-controls">
+              <button
+                id="projectsPrevBtn"
+                class="slider-btn"
+                type="button"
+                aria-label="Projeto anterior"
+              >
+                ‹
+              </button>
+
+              <button
+                id="projectsNextBtn"
+                class="slider-btn"
+                type="button"
+                aria-label="Projeto seguinte"
+              >
+                ›
+              </button>
+            </div>
           </div>
         </div>
 

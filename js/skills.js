@@ -26,7 +26,7 @@ function normalizeItems(value) {
     .filter(Boolean);
 }
 
-function collectUniqueProjectItems(key) {
+function collectUniqueItems(key) {
   const itemsMap = new Map();
 
   projects.forEach((project) => {
@@ -42,8 +42,12 @@ function collectUniqueProjectItems(key) {
   return Array.from(itemsMap.values());
 }
 
+function shuffleItems(items) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
 function getRandomItems(items, limit) {
-  return [...items].sort(() => Math.random() - 0.5).slice(0, limit);
+  return shuffleItems(items).slice(0, limit);
 }
 
 function renderSkillGroup(containerId, items, emptyMessage) {
@@ -66,17 +70,17 @@ function renderSkillGroup(containerId, items, emptyMessage) {
 
 export function initSkills() {
   const randomLanguages = getRandomItems(
-    collectUniqueProjectItems("languages"),
+    collectUniqueItems("languages"),
     SKILLS_LIMITS.languages,
   );
 
   const randomTools = getRandomItems(
-    collectUniqueProjectItems("tools"),
+    collectUniqueItems("tools"),
     SKILLS_LIMITS.tools,
   );
 
   const randomAreas = getRandomItems(
-    collectUniqueProjectItems("area"),
+    collectUniqueItems("area"),
     SKILLS_LIMITS.areas,
   );
 

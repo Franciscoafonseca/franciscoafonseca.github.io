@@ -42,7 +42,7 @@ export const projects = [
       "Projeto em JavaScript relacionado com programação de animações ou simulação 3D, organizado no repositório Project1-PA-3DRobot.",
     area: "Programação e Animação",
     languages: ["JavaScript"],
-    tools: ["p5.js, WebGL"],
+    tools: ["p5.js", "WebGL"],
     github: "https://github.com/Franciscoafonseca/Project1-PA-3DRobot",
   },
   {
@@ -209,6 +209,7 @@ export const projects = [
 
 export function initProjects() {
   const track = document.getElementById("projectsTrack");
+  const filtersContainer = document.getElementById("projectFilters");
   const prevBtn = document.getElementById("projectsPrevBtn");
   const nextBtn = document.getElementById("projectsNextBtn");
   const viewport = track?.parentElement;
@@ -218,7 +219,37 @@ export function initProjects() {
     return;
   }
 
+  const PROJECT_CATEGORIES = {
+    "Software & Web": [
+      "Engenharia de Software",
+      "Desenvolvimento Web",
+      "Desenvolvimento Desktop",
+      "Programação Orientada a Objetos",
+    ],
+    "Dados & IA": [
+      "Machine Learning",
+      "Inteligência Artificial",
+      "Bases de Dados",
+    ],
+    "Segurança & Redes": ["Cibersegurança", "Redes de Computadores"],
+    Sistemas: [
+      "Arquitetura de Computadores",
+      "Sistemas Digitais",
+      "Sistemas Operativos",
+      "Estruturas de Dados e Algoritmos",
+    ],
+    Criatividade: [
+      "Programação e Animação",
+      "Design Visual",
+      "Comunicação Visual",
+    ],
+  };
+
+  const FILTERS = ["Todos", ...Object.keys(PROJECT_CATEGORIES)];
+
   let currentStartIndex = 0;
+  let currentFilter = "Todos";
+  let filteredProjects = [...projects];
 
   function escapeHTML(value) {
     return String(value)
@@ -228,57 +259,206 @@ export function initProjects() {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
   }
-  function createTagsHTML(items, className) {
-    if (!items || !items.length) return "";
 
-    return items
+  function normalizeTags(items) {
+    if (!items) return [];
+
+    const values = Array.isArray(items) ? items : [items];
+
+    return values
       .flatMap((item) => String(item).split(","))
       .map((item) => item.trim())
-      .filter(Boolean)
+      .filter(Boolean);
+  }
+
+  function getProjectCategory(area) {
+    for (const [category, areas] of Object.entries(PROJECT_CATEGORIES)) {
+      if (areas.includes(area)) return category;
+    }
+
+    return "Outros";
+  }
+
+  function createTagsHTML(items, className, limit = 4) {
+    const tags = normalizeTags(items).slice(0, limit);
+
+    if (!tags.length) return "";
+
+    return tags
       .map(
-        (item) => `<span class="tag ${className}">${escapeHTML(item)}</span>`,
+        (item) =>
+          `<span class="project-tag ${className}">${escapeHTML(item)}</span>`,
       )
       .join("");
   }
 
+  function createGitHubIcon() {
+    return `
+      <svg
+        class="github-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.32 9.32 0 0 1 12 6.98c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
+        />
+      </svg>
+    `;
+  }
+
+  function renderFilters() {
+    if (!filtersContainer) return;
+
+    filtersContainer.innerHTML = `
+      <div class="project-filter-dropdown" id="projectFilterDropdown">
+        <button
+          class="project-filter-toggle"
+          id="projectFilterToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="projectFilterMenu"
+        >
+          <span class="project-filter-content">
+            <span class="project-filter-label">Filtro</span>
+            <strong id="projectFilterCurrent">${escapeHTML(currentFilter)}</strong>
+          </span>
+
+          <svg
+            class="project-filter-chevron"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6 1.4-1.4Z" />
+          </svg>
+        </button>
+
+        <div class="project-filter-menu" id="projectFilterMenu" hidden>
+          ${FILTERS.map(
+            (filter) => `
+              <button
+                class="project-filter-option ${
+                  filter === currentFilter ? "active" : ""
+                }"
+                type="button"
+                data-filter="${escapeHTML(filter)}"
+              >
+                ${escapeHTML(filter)}
+              </button>
+            `,
+          ).join("")}
+        </div>
+      </div>
+    `;
+
+    const dropdown = filtersContainer.querySelector("#projectFilterDropdown");
+    const toggle = filtersContainer.querySelector("#projectFilterToggle");
+    const menu = filtersContainer.querySelector("#projectFilterMenu");
+    const currentLabel = filtersContainer.querySelector(
+      "#projectFilterCurrent",
+    );
+
+    function closeFilter() {
+      dropdown.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    }
+
+    function toggleFilter(event) {
+      event.stopPropagation();
+
+      const isOpen = dropdown.classList.toggle("open");
+
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      menu.hidden = !isOpen;
+    }
+
+    toggle.addEventListener("click", toggleFilter);
+
+    menu.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-filter]");
+
+      if (!option) return;
+
+      applyFilter(option.dataset.filter);
+
+      currentLabel.textContent = currentFilter;
+
+      menu.querySelectorAll(".project-filter-option").forEach((button) => {
+        button.classList.toggle(
+          "active",
+          button.dataset.filter === currentFilter,
+        );
+      });
+
+      closeFilter();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!filtersContainer.contains(event.target)) {
+        closeFilter();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeFilter();
+    });
+  }
+
+  function applyFilter(filter) {
+    currentFilter = filter;
+
+    filteredProjects =
+      filter === "Todos"
+        ? [...projects]
+        : projects.filter(
+            (project) => getProjectCategory(project.area) === filter,
+          );
+
+    currentStartIndex = 0;
+
+    renderProjects();
+    scrollToIndex(0, false);
+    updateNavigationState();
+  }
+
   function createProjectItem(project, index) {
     const item = document.createElement("article");
-    item.className = `project-item reveal-on-scroll reveal-delay-${(index % 3) + 1}`;
 
-    const areaHTML = project.area
-      ? `
-        <div class="project-item-area-wrap">
-          <span class="project-area-badge">${project.area}</span>
-        </div>
-      `
-      : "";
+    item.className = `project-item reveal-on-scroll reveal-delay-${
+      (index % 3) + 1
+    }`;
 
-    const languagesHTML = createTagsHTML(project.languages, "tag-language");
-    const toolsHTML = createTagsHTML(project.tools, "tag-tool");
+    const languagesHTML = createTagsHTML(project.languages, "tag-language", 4);
+    const toolsHTML = createTagsHTML(project.tools, "tag-tool", 4);
 
     item.innerHTML = `
       <div class="project-item-inner">
-        <div class="project-item-content">
-          <h3 class="project-item-title">${project.title}</h3>
-          <p class="project-item-description">${project.description}</p>
-          ${areaHTML}
-        </div>    
-        <div class="project-item-tech">
-          ${toolsHTML}
-          ${languagesHTML}
+        <div class="project-card-header">
+          <span class="project-area">${escapeHTML(project.area)}</span>
+          <h3 class="project-item-title">${escapeHTML(project.title)}</h3>
         </div>
+
+        <p class="project-item-description">
+          ${escapeHTML(project.description)}
+        </p>
+
+        <div class="project-item-tech">
+          ${languagesHTML}
+          ${toolsHTML}
+        </div>
+
         <div class="project-item-footer">
           <a
             class="project-github-button"
-            href="${project.github}"
+            href="${escapeHTML(project.github)}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Abrir projeto no GitHub: ${project.title}"
+            aria-label="Ver projeto ${escapeHTML(project.title)} no GitHub"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.374 6.839 9.73.5.094.682-.222.682-.494 0-.243-.009-.889-.014-1.744-2.782.617-3.37-1.37-3.37-1.37-.454-1.183-1.11-1.497-1.11-1.497-.908-.636.069-.623.069-.623 1.004.072 1.532 1.056 1.532 1.056.892 1.565 2.341 1.113 2.91.851.091-.667.35-1.113.636-1.369-2.22-.259-4.555-1.14-4.555-5.073 0-1.12.389-2.036 1.029-2.754-.103-.26-.446-1.305.098-2.72 0 0 .84-.276 2.75 1.052A9.303 9.303 0 0 1 12 6.844c.85.004 1.705.118 2.504.347 1.909-1.328 2.748-1.052 2.748-1.052.546 1.415.203 2.46.1 2.72.64.718 1.028 1.634 1.028 2.754 0 3.943-2.339 4.811-4.566 5.064.359.317.678.942.678 1.898 0 1.371-.012 2.476-.012 2.814 0 .274.18.593.688.492A10.019 10.019 0 0 0 22 12.253C22 6.59 17.523 2 12 2Z"/>
-            </svg>
-            <span>GitHub</span>
+            ${createGitHubIcon()}
+            <span>Ver no GitHub</span>
           </a>
         </div>
       </div>
@@ -290,7 +470,24 @@ export function initProjects() {
   function renderProjects() {
     track.innerHTML = "";
 
-    projects.forEach((project, index) => {
+    if (!filteredProjects.length) {
+      track.innerHTML = `
+        <article class="project-item">
+          <div class="project-item-inner">
+            <div class="project-card-header">
+              <h3 class="project-item-title">Nenhum projeto encontrado</h3>
+            </div>
+
+            <p class="project-item-description">
+              Não existem projetos associados a este filtro.
+            </p>
+          </div>
+        </article>
+      `;
+      return;
+    }
+
+    filteredProjects.forEach((project, index) => {
       track.appendChild(createProjectItem(project, index));
     });
 
@@ -305,11 +502,12 @@ export function initProjects() {
   }
 
   function getMaxStartIndex() {
-    return Math.max(0, projects.length - getVisibleCount());
+    return Math.max(0, filteredProjects.length - getVisibleCount());
   }
 
   function getStepSize() {
     const firstItem = track.querySelector(".project-item");
+
     if (!firstItem) return 0;
 
     const trackStyles = window.getComputedStyle(track);
@@ -320,12 +518,21 @@ export function initProjects() {
 
   function scrollToIndex(index, smooth = true) {
     const step = getStepSize();
+
     if (!step) return;
 
     viewport.scrollTo({
       left: index * step,
       behavior: smooth ? "smooth" : "auto",
     });
+  }
+
+  function updateNavigationState() {
+    const maxStartIndex = getMaxStartIndex();
+    const shouldDisable = maxStartIndex === 0;
+
+    prevBtn.disabled = shouldDisable;
+    nextBtn.disabled = shouldDisable;
   }
 
   function goNext() {
@@ -356,10 +563,12 @@ export function initProjects() {
     }
 
     scrollToIndex(currentStartIndex, false);
+    updateNavigationState();
   }
 
   function syncProjectHeights() {
     const items = track.querySelectorAll(".project-item");
+
     if (!items.length) return;
 
     items.forEach((item) => {
@@ -370,12 +579,10 @@ export function initProjects() {
 
     items.forEach((item) => {
       const inner = item.querySelector(".project-item-inner");
+
       if (!inner) return;
 
-      const height = inner.offsetHeight;
-      if (height > maxHeight) {
-        maxHeight = height;
-      }
+      maxHeight = Math.max(maxHeight, inner.offsetHeight);
     });
 
     items.forEach((item) => {
@@ -387,6 +594,7 @@ export function initProjects() {
   nextBtn.addEventListener("click", goNext);
   window.addEventListener("resize", syncOnResize);
 
+  renderFilters();
   renderProjects();
   syncOnResize();
 }
