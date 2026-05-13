@@ -220,11 +220,24 @@ export function initProjects() {
 
   let currentStartIndex = 0;
 
+  function escapeHTML(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
   function createTagsHTML(items, className) {
     if (!items || !items.length) return "";
 
     return items
-      .map((item) => `<span class="project-tag ${className}">${item}</span>`)
+      .flatMap((item) => String(item).split(","))
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .map(
+        (item) => `<span class="tag ${className}">${escapeHTML(item)}</span>`,
+      )
       .join("");
   }
 

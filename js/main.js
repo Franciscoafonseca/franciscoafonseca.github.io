@@ -4,6 +4,7 @@ import { initTimeline } from "./timeline.js";
 import { initPosters } from "./posters.js";
 import { initScrollReveal } from "./effects.js";
 import { initProjects } from "./projects.js";
+import { initSkills } from "./skills.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
@@ -17,7 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (error) {
     console.error("Erro em initLanguage:", error);
   }
-
+  try {
+    initSkills();
+  } catch (error) {
+    console.error("Erro em initSkills:", error);
+  }
   try {
     initTimeline();
   } catch (error) {
