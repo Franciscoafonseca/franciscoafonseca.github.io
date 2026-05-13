@@ -1,11 +1,10 @@
 @import "./reset.css";
 @import "./base.css";
-@import "./hero.css";
-@import "./posters.css";
 @import "./layout.css";
 @import "./components.css";
+@import "./hero.css";
 @import "./timeline.css";
-@import "./responsive.css";
+@import "./posters.css";
 @import "./projects.css";
 @import "./skills.css";
-@import "./profile.css";
+@import "./responsive.css";
