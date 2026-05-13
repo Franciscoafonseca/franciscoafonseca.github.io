@@ -3,6 +3,7 @@
   position: relative;
   padding-bottom: 28px;
 }
+
 .education-timeline-shell {
   position: relative;
   display: grid;
@@ -36,34 +37,25 @@
 .timeline-nav {
   width: 52px;
   height: 52px;
-
   display: grid;
   place-items: center;
-
   border: 1px solid var(--border);
   border-radius: 16px;
-
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.02)
   );
-
   color: var(--text);
-
   font-size: 30px;
   font-weight: 600;
   line-height: 1;
-
   padding: 0;
-
   cursor: pointer;
-
   transition:
     transform 0.22s ease,
     border-color 0.22s ease,
     background 0.22s ease;
-
   align-self: center;
 }
 
@@ -78,6 +70,7 @@
 .timeline-nav-right span {
   transform: translate(1px, -3px);
 }
+
 .timeline-nav:hover {
   transform: translateY(-2px);
   border-color: rgba(77, 163, 255, 0.28);

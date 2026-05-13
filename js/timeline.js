@@ -3,13 +3,14 @@ const educationData = [
   {
     period: "2019 — 2022",
     title: "Ensino Secundário",
-    place: "Adicionar escola secundária",
+    place: "Escola Secundária Jaime Moniz",
     description:
-      "Espaço para colocares o teu percurso anterior, área de estudo, contexto académico e preparação para o ensino superior.",
+      "Percurso no ensino secundário na área de Ciências e Tecnologias, com foco em bases científicas, raciocínio lógico, matemática e preparação para o ingresso no ensino superior na área da informática.",
     logo: "assets/logos/liceujaimemoniz.png",
     highlights: [
-      "Adicionar destaque académico",
-      "Adicionar atividades ou participação relevante",
+      "Desenvolvimento de bases sólidas em matemática, lógica e ciências",
+      "Preparação académica para a entrada em Engenharia Informática",
+      "Primeiro contacto com áreas ligadas à tecnologia, resolução de problemas e pensamento analítico",
     ],
   },
   {
@@ -17,12 +18,13 @@ const educationData = [
     title: "Licenciatura em Engenharia Informática",
     place: "Universidade da Madeira",
     description:
-      "Percurso focado em bases sólidas de informática, programação, desenvolvimento de software, sistemas e áreas complementares da engenharia informática.",
+      "Percurso académico focado no desenvolvimento de software, programação, bases de dados, engenharia de sistemas, inteligência artificial, cibersegurança, redes, sistemas operativos e desenvolvimento web, com forte componente prática através de projetos académicos.",
     logo: "assets/logos/UMa.png",
     highlights: [
-      "Adicionar aqui unidades curriculares ou áreas fortes",
-      "Adicionar projetos ou trabalhos relevantes",
-      "Adicionar notas sobre evolução técnica",
+      "Desenvolvimento de projetos em Java, Python, C, C++, C#, JavaScript, PHP e Assembly",
+      "Experiência prática em desenvolvimento web, aplicações desktop, sistemas distribuídos, bases de dados e inteligência artificial",
+      "Projetos académicos nas áreas de machine learning, cibersegurança, e-health, redes, sistemas operativos e engenharia de software",
+      "Participação em contexto académico e associativo, reforçando competências de comunicação, organização e trabalho em equipa",
     ],
   },
   {
@@ -30,12 +32,27 @@ const educationData = [
     title: "Erasmus+",
     place: "University of Maribor",
     description:
-      "Experiência académica internacional com contacto com novos contextos de ensino, culturas e metodologias, reforçando autonomia, adaptação e visão global.",
+      "Experiência académica internacional realizada na University of Maribor, permitindo contacto com novos métodos de ensino, ambientes multiculturais e diferentes abordagens ao estudo da engenharia informática.",
     logo: "assets/logos/University_of_Maribor.png",
     highlights: [
-      "Adicionar unidades curriculares feitas em Erasmus",
-      "Adicionar projetos ou experiências internacionais",
-      "Adicionar competências desenvolvidas",
+      "Adaptação a um contexto académico internacional e multicultural",
+      "Desenvolvimento de autonomia, comunicação em inglês e capacidade de integração em novos ambientes",
+      "Contacto com diferentes metodologias de ensino e formas de trabalho em equipa",
+      "Reforço da visão global sobre tecnologia, engenharia e colaboração internacional",
+    ],
+  },
+  {
+    period: "2026 — Presente",
+    title: "Mestrado em Ciência de Dados",
+    place: "ISCTE Business School",
+    description:
+      "Percurso de mestrado focado em ciência de dados, análise avançada de informação, estatística, machine learning, inteligência artificial e apoio à tomada de decisão baseada em dados, reforçando a ligação entre tecnologia, gestão e contexto empresarial.",
+    logo: "assets/logos/iscte1.png",
+    highlights: [
+      "Especialização em ciência de dados aplicada a problemas reais e contextos empresariais",
+      "Aprofundamento de competências em análise de dados, machine learning, estatística e inteligência artificial",
+      "Contacto com metodologias de apoio à decisão orientadas por dados",
+      "Integração de conhecimentos técnicos de Engenharia Informática com uma visão mais estratégica e empresarial",
     ],
   },
 ];

@@ -1,13 +1,13 @@
 import { initScrollReveal } from "./effects.js";
 export function initPosters() {
   const posters = [
-    { file: "almeirim.jpeg", title: "Poster de Padel 2" },
-    { file: "masters.jpeg", title: "Poster de Padel 1" },
-    { file: "mimosa.jpeg", title: "Poster de Padel 4" },
-    { file: "oeiras.jpeg", title: "Poster de Padel 1" },
-    { file: "primeiro.jpeg", title: "Poster de Padel 4" },
-    { file: "santarem.jpeg", title: "Poster de Padel 5" },
-    { file: "tirso.jpeg", title: "Poster de Padel 3" },
+    { file: "1masters.jpeg", title: "Masters Abbsolutos - Paredes" }, //1
+    { file: "2santarem.jpeg", title: "Open Absolutos - Santarém" }, //2
+    { file: "3mimosa.jpeg", title: "Mimosa Open - Porto" }, //3
+    { file: "4oeiras.jpeg", title: "UBBO Prosonic - Oeiras" }, //4
+    { file: "5tirso.jpeg", title: "Open 5000 - Santo Tirso" }, //5
+    { file: "6primeiro.jpeg", title: "Open Carlsberg Padel Cup " }, //6
+    { file: "7almeirim.jpeg", title: "Poster de Padel 2" }, //7
   ];
 
   const track = document.getElementById("posterTrack");
