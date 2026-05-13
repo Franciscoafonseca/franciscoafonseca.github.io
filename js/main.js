@@ -7,6 +7,41 @@ import { initProjects } from "./projects.js";
 import { initSkills } from "./skills.js";
 import { initHero } from "./hero.js";
 
+function initInternalAnchorScroll() {
+  document.addEventListener(
+    "click",
+    (event) => {
+      const link = event.target.closest('a[href^="#"]');
+
+      if (!link) return;
+
+      const href = link.getAttribute("href");
+
+      if (!href || href === "#") return;
+
+      const targetId = href.slice(1);
+      const target = document.getElementById(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      const header = document.querySelector("header");
+      const headerOffset = (header?.offsetHeight || 72) + 34;
+      const targetTop =
+        target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(targetTop, 0),
+        behavior: "smooth",
+      });
+
+      history.pushState(null, "", href);
+    },
+    true,
+  );
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   try {
     initTheme();
@@ -18,6 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
     initLanguage();
   } catch (error) {
     console.error("Erro em initLanguage:", error);
+  }
+
+  try {
+    initHero();
+  } catch (error) {
+    console.error("Erro em initHero:", error);
   }
 
   try {
@@ -39,22 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   try {
-    initScrollReveal();
-  } catch (error) {
-    console.error("Erro em initScrollReveal:", error);
-  }
-
-  try {
     initProjects();
   } catch (error) {
     console.error("Erro em initProjects:", error);
   }
 
   try {
-    initHero();
+    initScrollReveal();
   } catch (error) {
-    console.error("Erro em initHero:", error);
+    console.error("Erro em initScrollReveal:", error);
   }
+
   initInternalAnchorScroll();
 
   const yearElement = document.getElementById("year");
@@ -63,35 +99,3 @@ document.addEventListener("DOMContentLoaded", () => {
     yearElement.textContent = new Date().getFullYear();
   }
 });
-function initInternalAnchorScroll() {
-  document.addEventListener(
-    "click",
-    (event) => {
-      const link = event.target.closest('a[href^="#"]');
-
-      if (!link) return;
-
-      const href = link.getAttribute("href");
-
-      if (!href || href === "#") return;
-
-      const target = document.getElementById(href.slice(1));
-
-      if (!target) return;
-
-      event.preventDefault();
-
-      const header = document.querySelector("header");
-      const headerOffset = (header?.offsetHeight || 72) + 24;
-
-      const targetPosition =
-        target.getBoundingClientRect().top + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
-    },
-    true,
-  );
-}
