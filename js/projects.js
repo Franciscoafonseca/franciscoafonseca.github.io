@@ -18,6 +18,31 @@ export const projects = [
     github: "https://github.com/Franciscoafonseca/ProjetoCinema",
   },
   {
+    title: "Jogo Joker 8051",
+    description:
+      "Projeto em C e Assembly para o microcontrolador 8051/AT89S51, simulando um concurso de perguntas com botões, temporizador, LEDs, display, jokers e buzzer.",
+    area: "Arquitetura de Computadores",
+    languages: ["Assembly", "C"],
+    tools: ["8051", "AT89S51", "Keil uVision", "Interrupções", "Timers"],
+    github: "https://github.com/Franciscoafonseca/Project3-AC-Joker",
+  },
+  {
+    title: "Simulação Paralela de Galáxia",
+    description:
+      "Simulação paralela de uma galáxia em Python usando mpi4py, com partículas representando estrelas, cálculo de forças gravitacionais, comunicação MPI, medições de tempo, gráficos 2D/3D e geração de GIF.",
+    area: "Computação Paralela",
+    languages: ["Python"],
+    tools: [
+      "MPI",
+      "mpi4py",
+      "NumPy",
+      "Matplotlib",
+      "ImageIO",
+      "Computação Paralela",
+    ],
+    github: "https://github.com/Franciscoafonseca/ProjetoPA2-Gif",
+  },
+  {
     title: "Sistema de Cantina em Assembly",
     description:
       "Projeto em Assembly para simulação ou gestão de uma cantina, desenvolvido no âmbito de Arquitetura de Computadores, com lógica implementada no ficheiro cantina_pepe.asm.",
@@ -226,18 +251,23 @@ export function initProjects() {
       "Desenvolvimento Desktop",
       "Programação Orientada a Objetos",
     ],
+
     "Dados & IA": [
       "Machine Learning",
       "Inteligência Artificial",
       "Bases de Dados",
     ],
+
     "Segurança & Redes": ["Cibersegurança", "Redes de Computadores"],
+
     Sistemas: [
       "Arquitetura de Computadores",
       "Sistemas Digitais",
       "Sistemas Operativos",
       "Estruturas de Dados e Algoritmos",
+      "Computação Paralela",
     ],
+
     Criatividade: [
       "Programação e Animação",
       "Design Visual",
